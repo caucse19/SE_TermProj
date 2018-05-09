@@ -1,0 +1,20 @@
+UC3 Flow Of Events for the Edit Use Case
+3.1 Preconditions:
+the file to edit is activated.
+3.2 Main Flows:
+User enter string.
+3.3 Subflows:
+None.
+3.4 Alternative Flows:
+None.
+
+UC? Flow Of Events for the Refresh Use Case
+?.1 Preconditions:
+None.
+?.2 Main Flows:
+User select refresh button. Program reload two files.[LOAD(UC2)] 
+Then shows two files[showBoard?]
+?.3 Subflows:
+None.
+?.4 Alternative Flows:
+None.
