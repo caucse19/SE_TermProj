@@ -1,0 +1,24 @@
+UC2 Flow of Events for the LOAD Use Case
+
+2.1 Preconditions :
+
+	1. User has file to load
+	2. file must be a text file
+
+2.2 Main Flow :
+	
+	1. Press the LOAD button at the top of each panel
+	2. new directory windows pops up
+	3. user chooses wanted file for each panel
+	4. presses OPEN button and panels should display the corresponding chosen file
+
+2.3 Subflows :
+
+	1. Press the LOAD button at the top of panel ( just one panel )
+	2. new directory windows pops up
+	3. user chooses wanted file for that panel
+	4. user can't merge file , but can edit file on one panel and can save
+
+2.4 Alternative Flows :
+
+None. 

@@ -1,0 +1,15 @@
+UC5 Flow of Events for the Save Use Case
+
+5.1 Preconditions
+There must be a content in the file.
+
+5.2 Main flow
+1. If user click the save mutton, the contents of the file are saved. 
+2. User must choose  file¡¯s name and path where file will be stored.
+
+5.3 Sub Flow
+1. If opened file is already existed, pressing save button will save the file in same path and name.
+
+5.4 Alternative Flow
+1. If there are no changes in the file¡¯s contents, save button will not be activated.
+2. User can select ¡°Save as another name¡±, and then, user must choose file¡¯s name and new path.
