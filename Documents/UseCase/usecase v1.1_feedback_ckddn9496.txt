@@ -1,0 +1,53 @@
+* usecase v1.1 feedback
+
+1. UC1 Flow of Events for Start Use Case
+
+None
+
+2. UC2 Flow of Events For Load Use Case
+
+SimpleMerge 프로그램의 Load의 과정에서는 좌, 우 패널을 위한
+각자의 Open해주기위한 Window창을 띄워준다.
+하지만 WinMerge 프로그램은 하나의 새로운 Window 창에
+left panel과 right panel을 첨부하기 위한 open버튼이 
+같이 존재한다.
+
+SimpleMerge 프로그램은 어떻게 처리할지 정해야 될 것 같다.
+
+3. UC3 Flow of Events for the EDIT Use Case
+
+EDIT 버튼이 toggle 버튼이라는 것을 언급하여 줬으면 좋을 것 같다.
+
+4. UC4 Flow of Events for the Compare Use Case
+
+Subflows에 The standard panel for the comparison is the left file
+내용이 들어가는게 맞는게 아닌것 같습니다. 이것은 사용자가 진행하면서
+보게 되는 내용 보다는 구현단계에서 설계해야 하는것 인것 같습니다.
+
+5. UC5 Flow of Events for the Merge(1): Copy to Right
+
+None
+
+6. UC6 Flow of Events for the Merge(2): Copy to Left
+
+None
+
+7. UC7 Flow of Events for the Save Use Case
+
+Subflow 내 Save As 버튼을 누를 시 새로운 디렉터리를 지정함과
+이름도 새로 지정할 수 있다는 내용이 보충되어야 할 것 같습니다.
+
+그리고 위의 Subflow를 변경 하는 것이 Alternative Flows 3번
+내용과 더 잘어울리는 것 같습니다.
+"with a file name same as the original file in the same directory"
+파일 내용을 같은 이름으로 지정하지 않으면 같은 디렉터리라도
+다른 이름으로 저장 가능
+
++ 추가 질문
+WinMerge에서 Load한 파일들에 수정이 가해졌었거나
+Load를 하지않고 panel에 내용을 작성 하였을 경우는 
+어느 case에 들어가야 하는지 고민이 됩니다.
+issue에 답글을 달아주셨으면 좋겠습니다.
+
+저의 개인적인 생각은 이는 Misuse case에 하나의 usecase로
+생성하여 만드는 것이 좋다고 생각합니다. 
