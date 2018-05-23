@@ -1,3 +1,5 @@
+package SimpleMerge;
+
 import java.awt.*; //	Layout
 import javax.swing.*;
 
@@ -53,6 +55,7 @@ public class SimpleMergeFrame {
 
 		leftTextArea = new JTextArea(200, 200);
 		rightTextArea = new JTextArea(200, 200);
+		
 		
 		/* Load implementation!!!!! */
 		leftLoadBtn = new JButton("Left Load");
