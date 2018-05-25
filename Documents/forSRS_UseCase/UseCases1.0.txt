@@ -1,0 +1,42 @@
+UseCase ver 1.0
+
+UC1. Execute SimpleMerge
+
+FLOWEVENT
+
+1.1: SimpleMerge window shows two blank panels (potentially two text)
+1.2: Top window shows tool buttons : LOAD SAVE EDIT MERGE(CPYL CPLR)
+
+UC2. LOAD
+
+FLOWEVENT
+
+1.1 user presses LOAD button
+1.2 new directory window pops up
+1.3 user choses wanted two files (for left right panels) from directory
+1.4 user presses OPEN button, and panels should display the corresponding chosen file.
+
+UC3. EDIT
+
+1.1 user presses EDIT button
+1.2 The program allows user to edit
+
+UC4. MERGE
+
+1.1 user presses MERGE button
+1.2 MERGE should show two options Copy Left, Copy Right
+
+Subflows:
+
+[S1] If the user chooses the CopyLeft function, The selected contents of the
+right panel is copied to the left panel.
+
+
+[S2] If the user chooses the CopyRight function, The selected contents of the
+left panel is copied to the right panel.
+
+UC5. SAVE
+
+1.1 user presses SAVE button
+1.2 the changed contents of the files are saved seperately (panel left, panel right)
+ 
