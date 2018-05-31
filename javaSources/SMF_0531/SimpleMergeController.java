@@ -31,9 +31,9 @@ public class SimpleMergeController {
 		
 		/* addEventHandler to JButtons */
 		this.leftLoadBtn = this.frm.getLeftLoadBtn();
-		this.leftLoadBtn.addActionListener(new LoadEventHandler(leftTextArea));
+		this.leftLoadBtn.addActionListener(new LoadEventHandler(leftTextArea, 1));
 		this.rightLoadBtn = this.frm.getRightLoadBtn();
-		this.rightLoadBtn.addActionListener(new LoadEventHandler(rightTextArea));
+		this.rightLoadBtn.addActionListener(new LoadEventHandler(rightTextArea, 2));
 		this.editBtn = this.frm.getEditBtn();
 		this.editBtn.addActionListener(new EditEventHandler(leftTextArea, rightTextArea));
 		this.saveCBox = this.frm.getsaveCBox();

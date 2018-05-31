@@ -12,10 +12,15 @@ import javax.swing.filechooser.FileSystemView;
 
 public class LoadEventHandler implements ActionListener {
 	private JTextArea textArea;
+	private int loadOption;
 	
-	public LoadEventHandler(JTextArea area) {
+	public LoadEventHandler(JTextArea area, int loadOption) {
 		this.textArea = area;
+		this.loadOption = loadOption;
 	}
+	
+	public static String leftFileName = null;
+	public static String rightFileName = null;
 
 	@Override
 	public void actionPerformed(ActionEvent e) { // TODO Auto-generated method stub
@@ -28,6 +33,13 @@ public class LoadEventHandler implements ActionListener {
 			System.out.println(chooser.getSelectedFile().toString());
 			File selectedFile = chooser.getSelectedFile();
 			String filename = selectedFile.getAbsolutePath();
+			
+			if(loadOption == 1)
+				leftFileName = filename;
+			else
+				rightFileName = filename;
+			
+			
 			try {
 				String str;
 				FileReader reader = new FileReader(filename);
