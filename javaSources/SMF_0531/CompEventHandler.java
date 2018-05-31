@@ -13,9 +13,7 @@ public class CompEventHandler implements ActionListener {
 	private JTextArea lTextArea;
 	private JTextArea rTextArea;
 	
-	HighlightPainter corpainter = 
-            new DefaultHighlighter.DefaultHighlightPainter(Color.white);
-	HighlightPainter wrnpainter = 
+	HighlightPainter wrnpainter = 	//Highlight Color Yellow
             new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
 	public CompEventHandler(JTextArea area1, JTextArea area2) {
 		this.lTextArea = area1;
@@ -23,33 +21,42 @@ public class CompEventHandler implements ActionListener {
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent e) { // TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) { 
 		
 		
 		String []lText= null;
 		String []rText= null;
-		lText = lTextArea.getText().split("\n");
-		rText = rTextArea.getText().split("\n");
+		lText = lTextArea.getText().split("\n"); // Make Array of Strings in lTextArea
+		rText = rTextArea.getText().split("\n"); // Make Array of Strings in rTextArea
 		int lLength = lText.length;
 		int rLength = rText.length;
-		int [] lfixarr = new int[lLength];
-		int [] rfixarr = new int[rLength];
-		int lfix = 0;
-		int rfix = 0;
-		int [][]LCS = new int [lLength+1][rLength+1]; 
-		String [][]Solution = new String [lLength+1][rLength+1];
-		//Highlighter lwhighlighter = lTextArea.getHighlighter();
+		
+		int [] lfixarr = new int[lLength];	//for new line that will be inserted
+		int [] rfixarr = new int[rLength];	//for new line that will be inserted
+		int fix = 0;						//for new line that will be inserted
+		int leftNewLine = 0;				//for new line that will be inserted
+		int rightNewLine = 0;				//for new line that will be inserted
+		
+		int [][]LCS = new int [lLength+1][rLength+1]; 				
+		//Array for Comparing Strings in LCS Algorithm
+		String [][]Solution = new String [lLength+1][rLength+1];	
+		//Array for Checking Solutions in LCS Algorithm
+		
 		Highlighter lyhighlighter = lTextArea.getHighlighter();
-		//Highlighter rwhighlighter = rTextArea.getHighlighter();
 		Highlighter ryhighlighter = rTextArea.getHighlighter();
-
+		Highlighter ldhighlighter = lTextArea.getHighlighter();
+		Highlighter rdhighlighter = rTextArea.getHighlighter();
+		
+		ldhighlighter.removeAllHighlights();
+		rdhighlighter.removeAllHighlights();
+		
+		/*   LCS Algorithm   */
 		for(int i = 0; i < lLength; i++) {
 			for(int j = 0; j < rLength; j++) {
 				LCS[i][j] = 0;
 				Solution[i][j] = null;
 			}
 		}
-		
 		
 		for(int a = 1; a < lLength+1; a++) {
 			for(int b = 1; b < rLength+1; b++) {
@@ -66,34 +73,25 @@ public class CompEventHandler implements ActionListener {
 					else {
 						Solution[a][b] = "left";
 					}
-					
 				}
 			}
 		}
-		
+		/* LCS Algorithm Finished */
 		
 		while(Solution[lLength][rLength] != null) {
 			if(Solution[lLength][rLength] == "Sol") {
 				try {
 					int lstart = lTextArea.getLineStartOffset(lLength-1);
-					int lend = lTextArea.getLineEndOffset(lLength-1);
+				//	int lend = lTextArea.getLineEndOffset(lLength-1);
 					int rstart = rTextArea.getLineStartOffset(rLength-1);
-					int rend = rTextArea.getLineEndOffset(rLength-1);
-					//lwhighlighter.addHighlight(lstart, lend, corpainter );
-					//rwhighlighter.addHighlight(rstart, rend, corpainter );
-					if(lLength > rLength) {
-						rfixarr[rfix] = rstart;
-						rfix++;
-					}
-					else if(lLength < rLength) {
-						lfixarr[lfix] = lstart;
-						lfix++;
-					}
+				//	int rend = rTextArea.getLineEndOffset(rLength-1);
+					
+					rfixarr[fix] = rTextArea.getLineOfOffset(rstart);
+					lfixarr[fix] = lTextArea.getLineOfOffset(lstart);
+					fix++;
 				} catch (BadLocationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					break;
 				}
-				
 				lLength--;
 				rLength--;
 			}
@@ -101,37 +99,33 @@ public class CompEventHandler implements ActionListener {
 				try {
 					int lstart = lTextArea.getLineStartOffset(lLength-1);
 					int lend = lTextArea.getLineEndOffset(lLength-1);
-					lyhighlighter.addHighlight(lstart, lend, wrnpainter );
+					lyhighlighter.addHighlight(lstart - 1, lend, wrnpainter );
 				} catch (BadLocationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					break;
 				}
-				System.out.println("top");
 				lLength--;
 			}
 			else if(Solution[lLength][rLength] == "left") {
 				try {
 					int rstart = rTextArea.getLineStartOffset(rLength-1);
 					int rend = rTextArea.getLineEndOffset(rLength-1);
-					ryhighlighter.addHighlight(rstart, rend, wrnpainter );
+					ryhighlighter.addHighlight(rstart - 1, rend, wrnpainter );
 				} catch (BadLocationException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					break;
 				}
-				System.out.println("left");
 				rLength--;
 			}
 		}
+		
 		while(lLength > 0) {
 			try {
 				int lstart = lTextArea.getLineStartOffset(lLength-1);
 				int lend = lTextArea.getLineEndOffset(lLength-1);
 				lyhighlighter.addHighlight(lstart, lend, wrnpainter );
 			} catch (BadLocationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				break;
 			}
-			System.out.println("top");
+			//System.out.println("top");
 			lLength--;	
 		}
 		
@@ -141,19 +135,37 @@ public class CompEventHandler implements ActionListener {
 				int rend = rTextArea.getLineEndOffset(rLength-1);
 				ryhighlighter.addHighlight(rstart, rend, wrnpainter );
 			} catch (BadLocationException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				break;
 			}
-			System.out.println("left");
+			//System.out.println("left");
 			rLength--;
 		}
-		
-		
-//		for(int i = 0; i < lfix; i++)
-//			lTextArea.insert("\n", lfixarr[i]);
-//		for(int j = 0; j < rfix; j++)
-//			rTextArea.insert("\n", rfixarr[j]);
-		
-	}
 
+		
+		/* Insert New Lines in lTextArea and rTextArea */
+		for(int i = fix - 1; i >-1; i--) {
+			if(lfixarr[i] + leftNewLine > rfixarr[i] + rightNewLine) {
+				while(lfixarr[i] + leftNewLine - rfixarr[i] - rightNewLine > 0 ) {
+					try {
+						rTextArea.insert("\n", rTextArea.getLineStartOffset(rfixarr[i] + rightNewLine));
+					} catch (BadLocationException e1) {
+						break;
+					}
+					rightNewLine++;	
+				}
+			}
+			
+			else if(lfixarr[i] + leftNewLine < rfixarr[i] + rightNewLine) {
+				while(rfixarr[i] + rightNewLine - lfixarr[i] - leftNewLine > 0 ) {
+					try {
+						lTextArea.insert("\n", lTextArea.getLineStartOffset(lfixarr[i] + leftNewLine));
+					} catch (BadLocationException e1) {
+						break;
+					}
+					leftNewLine++;
+				}
+			}
+		}
+		/* New Line Inserting Ended */
+	}
 }
