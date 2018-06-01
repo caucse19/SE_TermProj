@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 
 public class SimpleMergeController {
 	private SimpleMergeFrame frm;
@@ -20,6 +22,8 @@ public class SimpleMergeController {
 	private JTextArea leftTextArea;
 	private JTextArea rightTextArea;
 	public static int saveOption = 0;
+	public static int leftLineNum = -1;
+	public static int rightLineNum = -1;
 	
 	/* Constructor */
 	public SimpleMergeController() {
@@ -46,8 +50,35 @@ public class SimpleMergeController {
 		this.saveBtn = this.frm.getSaveBtn();
 		this.saveBtn.addActionListener(new SaveEventHandler(leftTextArea, rightTextArea));
 		this.cpyToRightBtn = this.frm.getCpyToRightBtn();
+		this.cpyToRightBtn.addActionListener(new MergeEventHandler(leftTextArea, rightTextArea, 1));
 		this.cpyToLeftBtn = this.frm.getCpyToLeftBtn();
+		this.cpyToLeftBtn.addActionListener(new MergeEventHandler(leftTextArea, rightTextArea, 2));
 		this.compBtn = this.frm.getCompBtn();
 		this.compBtn.addActionListener(new CompEventHandler(leftTextArea, rightTextArea));
+		
+		leftTextArea.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent e) {
+                JTextArea editArea = (JTextArea)e.getSource();
+                try {
+                   rightLineNum = -1;
+                    int caretpos = editArea.getCaretPosition();
+                    leftLineNum = editArea.getLineOfOffset(caretpos) + 1;
+
+                }
+                catch(Exception ex) { }
+            }
+        });
+      
+      rightTextArea.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent e) {
+                JTextArea editArea = (JTextArea)e.getSource();
+                try {
+                   leftLineNum = -1;
+                    int caretpos = editArea.getCaretPosition();
+                    rightLineNum = editArea.getLineOfOffset(caretpos) + 1;
+                }
+                catch(Exception ex) { }
+            }
+        });
 	}
 }

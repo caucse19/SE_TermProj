@@ -16,6 +16,10 @@ public class EditEventHandler implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
+		SimpleMergeController.leftLineNum = -1;
+		SimpleMergeController.rightLineNum = -1;
+		
 		if (leftTextArea.isEditable()) { // if editable
 			leftTextArea.setEditable(false);
 			rightTextArea.setEditable(false);
