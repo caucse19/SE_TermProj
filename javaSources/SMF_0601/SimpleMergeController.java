@@ -18,6 +18,8 @@ public class SimpleMergeController {
 	private JButton saveBtn;
 	private JButton cpyToRightBtn;
 	private JButton cpyToLeftBtn;
+	private JButton allCpyToRightBtn;
+	private JButton allCpyToLeftBtn;
 	private JButton compBtn;
 	private JTextArea leftTextArea;
 	private JTextArea rightTextArea;
@@ -57,6 +59,15 @@ public class SimpleMergeController {
 		this.cpyToLeftBtn.addActionListener(new MergeEventHandler(leftTextArea, rightTextArea, 2));
 		this.compBtn = this.frm.getCompBtn();
 		this.compBtn.addActionListener(new CompEventHandler(leftTextArea, rightTextArea));
+		this.allCpyToRightBtn = this.frm.getAllCpyToRightBtn();
+		this.allCpyToRightBtn.addActionListener(new CopyEventHandler(leftTextArea, rightTextArea, 1));
+		this.allCpyToLeftBtn = this.frm.getAllCpyToLeftBtn();
+		this.allCpyToLeftBtn.addActionListener (new CopyEventHandler(leftTextArea, rightTextArea, 2));
+		
+		
+		
+		
+		
 		
 		leftTextArea.addCaretListener(new CaretListener() {
             public void caretUpdate(CaretEvent e) {

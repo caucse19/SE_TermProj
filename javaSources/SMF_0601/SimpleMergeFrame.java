@@ -18,6 +18,8 @@ public class SimpleMergeFrame {
 	private JButton saveBtn;
 	private JButton cpyToRightBtn;
 	private JButton cpyToLeftBtn;
+	private JButton allCpyToRightBtn;
+	private JButton allCpyToLeftBtn;
 	private JButton compBtn;
 	private JTextArea leftTextArea;
 	private JScrollPane leftScroll;
@@ -46,7 +48,7 @@ public class SimpleMergeFrame {
 		winPanel = new JPanel(new FlowLayout());
 		textPanel = new JPanel(new GridLayout(1, 2));
 
-		frm.setBounds(500, 200, 1000, 500);
+		frm.setBounds(500, 200, 1300, 500);
 
 		// WinPanel
 		editPanel = new JPanel(new FlowLayout());
@@ -61,6 +63,8 @@ public class SimpleMergeFrame {
 		saveBtn = new JButton("Save");
 		cpyToRightBtn = new JButton("Copy to Right");
 		cpyToLeftBtn = new JButton("Copy to Left");
+		allCpyToRightBtn = new JButton("All copy to Right");
+		allCpyToLeftBtn = new JButton("All copy to Left");
 		compBtn = new JButton("Compare");
 		
 		editPanel.add(leftLoadBtn);
@@ -70,6 +74,8 @@ public class SimpleMergeFrame {
 		editPanel.add(saveBtn);
 		mergePanel.add(cpyToRightBtn);
 		mergePanel.add(cpyToLeftBtn);
+		mergePanel.add(allCpyToRightBtn);
+		mergePanel.add(allCpyToLeftBtn);
 		compPanel.add(compBtn);
 
 		winPanel.add(editPanel);
@@ -109,6 +115,12 @@ public class SimpleMergeFrame {
 	}
 	public JButton getCpyToRightBtn() {
 		return this.cpyToRightBtn;
+	}
+	public JButton getAllCpyToLeftBtn() {
+		return this.allCpyToLeftBtn;
+	}
+	public JButton getAllCpyToRightBtn() {
+		return this.allCpyToRightBtn;
 	}
 	public JButton getCpyToLeftBtn() {
 		return this.cpyToLeftBtn;
