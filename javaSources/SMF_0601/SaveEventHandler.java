@@ -26,6 +26,9 @@ public class SaveEventHandler implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		SimpleMergeController.leftLineNum = -1;
+		SimpleMergeController.rightLineNum = -1;
 
 		switch (SimpleMergeController.saveOption) {
 		case 0:
@@ -41,14 +44,14 @@ public class SaveEventHandler implements ActionListener {
 		String fileName = null;
 
 		/* push "left save" without "load" */
-		if (SimpleMergeController.saveOption == 0 && LoadEventHandler.leftFileName != null) {
-			file = new File(LoadEventHandler.leftFileName);
+		if (SimpleMergeController.saveOption == 0 && SimpleMergeController.leftFileName != null) {
+			file = new File(SimpleMergeController.leftFileName);
 			fileName = file.toString();
 		}
 
 		/* push "right save" without "load" */
-		else if (SimpleMergeController.saveOption == 2 && LoadEventHandler.rightFileName != null) {
-			file = new File(LoadEventHandler.rightFileName);
+		else if (SimpleMergeController.saveOption == 2 && SimpleMergeController.rightFileName != null) {
+			file = new File(SimpleMergeController.rightFileName);
 			fileName = file.toString();
 		}
 

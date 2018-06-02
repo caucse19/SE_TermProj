@@ -23,6 +23,8 @@ public class CompEventHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) { 
 		
+		SimpleMergeController.leftLineNum = -1;
+		SimpleMergeController.rightLineNum = -1;
 		
 		String []lText= null;
 		String []rText= null;

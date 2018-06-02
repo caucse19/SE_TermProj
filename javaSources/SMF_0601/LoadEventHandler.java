@@ -19,11 +19,14 @@ public class LoadEventHandler implements ActionListener {
 		this.loadOption = loadOption;
 	}
 	
-	public static String leftFileName = null;
-	public static String rightFileName = null;
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) { // TODO Auto-generated method stub
+		
+		SimpleMergeController.leftLineNum = -1;
+		SimpleMergeController.rightLineNum = -1;
+		
 		JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TXT (*.txt)", "txt");
 		chooser.addChoosableFileFilter(filter);
@@ -35,9 +38,9 @@ public class LoadEventHandler implements ActionListener {
 			String filename = selectedFile.getAbsolutePath();
 			
 			if(loadOption == 1)
-				leftFileName = filename;
+				SimpleMergeController.leftFileName = filename;
 			else
-				rightFileName = filename;
+				SimpleMergeController.rightFileName = filename;
 			
 			
 			try {

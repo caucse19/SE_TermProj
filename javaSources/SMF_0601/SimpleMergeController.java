@@ -24,6 +24,8 @@ public class SimpleMergeController {
 	public static int saveOption = 0;
 	public static int leftLineNum = -1;
 	public static int rightLineNum = -1;
+	public static String leftFileName = null;
+	public static String rightFileName = null;
 	
 	/* Constructor */
 	public SimpleMergeController() {

@@ -183,10 +183,12 @@ public class MergeEventHandler implements ActionListener {
 		
 		
 		if(mergeOption == 1) {
-			for(int i = lhighlightedLine[begin] - 1; i < lhighlightedLine[end]; i++) {
-				rTextArea.append(lText[i] + "\n");
-			}
+			rTextArea.replaceRange(lText[6], 6, 8);
 		}
+//			for(int i = lhighlightedLine[begin] - 1; i < lhighlightedLine[end]; i++) {
+//				rTextArea.replaceRange(lText[i], i, i+1);
+//			}
+//		}
 		else {
 			for(int i = lhighlightedLine[begin] - 1; i < lhighlightedLine[end]; i++) {
 				lTextArea.append(rText[i] + "\n");
