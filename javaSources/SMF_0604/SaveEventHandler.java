@@ -96,8 +96,13 @@ public class SaveEventHandler implements ActionListener {
 			StringReader content = new StringReader(textArea.getText());
 			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
 			BufferedReader br = new BufferedReader(content);
-
+			int check = -1;
 			while ((line = br.readLine()) != null) {
+				check++;
+				if((SimpleMergeController.saveOption == 0 || SimpleMergeController.saveOption == 1) && SimpleMergeController.lbl.contains(check))
+					continue;
+				else if((SimpleMergeController.saveOption == 2 || SimpleMergeController.saveOption == 3) &&SimpleMergeController.rbl.contains(check))
+					continue;
 				bw.write(line);
 				bw.newLine();
 			}

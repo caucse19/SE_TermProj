@@ -2,6 +2,8 @@ package SimpleMerge;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -33,11 +35,11 @@ public class CompEventHandler implements ActionListener {
 		int lLength = lText.length;
 		int rLength = rText.length;
 		
-		int [] lfixarr = new int[lLength];	//for new line that will be inserted
-		int [] rfixarr = new int[rLength];	//for new line that will be inserted
+		int [] lfixarr = new int[lLength];	//Line index of Solution Line
+		int [] rfixarr = new int[rLength];	//Line index of Solution Line
 		int fix = 0;						//for new line that will be inserted
-		int leftNewLine = 0;				//for new line that will be inserted
-		int rightNewLine = 0;				//for new line that will be inserted
+		int leftNewLine = 0;				//New Lines(Fake blank)
+		int rightNewLine = 0;				//New Lines(Fake blank)
 		
 		int [][]LCS = new int [lLength+1][rLength+1]; 				
 		//Array for Comparing Strings in LCS Algorithm
@@ -59,7 +61,7 @@ public class CompEventHandler implements ActionListener {
 				Solution[i][j] = null;
 			}
 		}
-		
+		// && lText[a-1].length()!=0
 		for(int a = 1; a < lLength+1; a++) {
 			for(int b = 1; b < rLength+1; b++) {
 				if(lText[a-1].equals(rText[b-1])) {
@@ -88,9 +90,12 @@ public class CompEventHandler implements ActionListener {
 					int rstart = rTextArea.getLineStartOffset(rLength-1);
 				//	int rend = rTextArea.getLineEndOffset(rLength-1);
 					
+					
 					rfixarr[fix] = rTextArea.getLineOfOffset(rstart);
 					lfixarr[fix] = lTextArea.getLineOfOffset(lstart);
+;
 					fix++;
+					
 				} catch (BadLocationException e1) {
 					break;
 				}
@@ -101,6 +106,7 @@ public class CompEventHandler implements ActionListener {
 				try {
 					int lstart = lTextArea.getLineStartOffset(lLength-1);
 					int lend = lTextArea.getLineEndOffset(lLength-1);
+					//System.out.println("top");
 					lyhighlighter.addHighlight(lstart - 1, lend, wrnpainter );
 				} catch (BadLocationException e1) {
 					break;
@@ -111,6 +117,7 @@ public class CompEventHandler implements ActionListener {
 				try {
 					int rstart = rTextArea.getLineStartOffset(rLength-1);
 					int rend = rTextArea.getLineEndOffset(rLength-1);
+					//System.out.println("left");
 					ryhighlighter.addHighlight(rstart - 1, rend, wrnpainter );
 				} catch (BadLocationException e1) {
 					break;
@@ -142,32 +149,66 @@ public class CompEventHandler implements ActionListener {
 			//System.out.println("left");
 			rLength--;
 		}
+	      SimpleMergeController.lbl = new ArrayList<Integer>();
+	      SimpleMergeController.rbl = new ArrayList<Integer>();
 
-		
-		/* Insert New Lines in lTextArea and rTextArea */
-		for(int i = fix - 1; i >-1; i--) {
-			if(lfixarr[i] + leftNewLine > rfixarr[i] + rightNewLine) {
-				while(lfixarr[i] + leftNewLine - rfixarr[i] - rightNewLine > 0 ) {
-					try {
-						rTextArea.insert("\n", rTextArea.getLineStartOffset(rfixarr[i] + rightNewLine));
-					} catch (BadLocationException e1) {
-						break;
-					}
-					rightNewLine++;	
-				}
-			}
-			
-			else if(lfixarr[i] + leftNewLine < rfixarr[i] + rightNewLine) {
-				while(rfixarr[i] + rightNewLine - lfixarr[i] - leftNewLine > 0 ) {
-					try {
-						lTextArea.insert("\n", lTextArea.getLineStartOffset(lfixarr[i] + leftNewLine));
-					} catch (BadLocationException e1) {
-						break;
-					}
-					leftNewLine++;
-				}
-			}
-		}
-		/* New Line Inserting Ended */
+	      /* Insert New Lines in lTextArea and rTextArea */
+	      // Then Check New line Numbers in lbl and rbl(fake blank)
+	      for(int i = fix - 1; i >-1; i--) {
+	         if(lfixarr[i] + leftNewLine > rfixarr[i] + rightNewLine) {
+	            int temp = 0;
+	            while(lfixarr[i] + leftNewLine - rfixarr[i] - rightNewLine > 0 ) {
+	               try {
+	                  rTextArea.insert("\n", rTextArea.getLineStartOffset(rfixarr[i] + rightNewLine));
+	                  
+	                  //First line value is 0
+	                  if (SimpleMergeController.rbl.contains(rfixarr[i] + rightNewLine))
+	                     SimpleMergeController.rbl.add(rfixarr[i] + rightNewLine + temp++);
+	                  else
+	                     temp = 0;
+	                  SimpleMergeController.rbl.add(rfixarr[i] + rightNewLine);
+	               } catch (BadLocationException e1) {
+	                  break;
+	               }
+	               rightNewLine++;   
+	            }
+	         }
+	         
+	         else if(lfixarr[i] + leftNewLine < rfixarr[i] + rightNewLine) {
+	            int temp = 0;
+	            while(rfixarr[i] + rightNewLine - lfixarr[i] - leftNewLine > 0 ) {
+	               try {
+	                  lTextArea.insert("\n", lTextArea.getLineStartOffset(lfixarr[i] + leftNewLine));
+	                  
+	                  //First line value is 0
+	                  if (SimpleMergeController.lbl.contains(lfixarr[i] + leftNewLine))
+	                     SimpleMergeController.lbl.add(lfixarr[i] + leftNewLine + temp++);
+	                  else
+	                     temp = 0;
+	                  SimpleMergeController.lbl.add(lfixarr[i] + leftNewLine);
+	               } catch (BadLocationException e1) {
+	                  break;
+	               }
+	               leftNewLine++;
+	            }
+	         }
+
+	      }
+	      
+	      lText = lTextArea.getText().split("\n"); 
+	      rText = rTextArea.getText().split("\n"); 
+	      if(lText.length> rText.length) {
+	    	  int temp = 0;
+	    	  for(int i = 0; i < lText.length - rText.length; i++) {
+	    		  rTextArea.append("\n\0");
+	    	  }
+	      }
+	      else if (lText.length < rText.length) {
+	    	  int temp = 0;
+	    	  for(int i = 0; i < rText.length - lText.length; i++) {
+	    		  lTextArea.append("\n\0");
+	    	  }
+	      }
+	      /* New Line Inserting Ended */
 	}
 }

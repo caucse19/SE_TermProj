@@ -2,6 +2,7 @@ package SimpleMerge;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,7 +29,8 @@ public class SimpleMergeController {
 	public static int rightLineNum = -1;
 	public static String leftFileName = null;
 	public static String rightFileName = null;
-	
+	public static ArrayList<Integer> lbl;
+	public static ArrayList<Integer> rbl;
 	/* Constructor */
 	public SimpleMergeController() {
 		/* Show View */
