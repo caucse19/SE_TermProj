@@ -1,34 +1,42 @@
-Ãß°¡ ¼öÁ¤»çÇ×
+2018-06-04 ì¶”ê°€ ìˆ˜ì •ì‚¬í•­
 
-1. SimpleMergeController¿¡ addActionLister¼öÇà
+1. CompEventHandler ê³µë°± ì˜¤ë¥˜ ìˆ˜ì •
+2. Fake blank Saveì‹œ ì‚¬ë¼ì§€ê²Œ ìˆ˜ì •
+3. Merge ìˆ˜í–‰ì‹œ Highlight ë°”ë¡œ ë°˜ì˜ë˜ê²Œ ìˆ˜ì •
 
-2. EventHandler¿Í ¸ğµÎ Controller¿¡¼­ ¿¬°áµÇ´Â °úÁ¤¿¡¼­
-SimpleMergeFrame¿¡ ÀÖ´ø public static int saveOptionº¯¼ö¸¦
-SimpleMergeController·Î ¿Å±è. SaveEventHandlerÀÇ
+
+
+2018-06-01ì¶”ê°€ ìˆ˜ì •ì‚¬í•­
+
+1. SimpleMergeControllerì— addActionListerìˆ˜í–‰
+
+2. EventHandlerì™€ ëª¨ë‘ Controllerì—ì„œ ì—°ê²°ë˜ëŠ” ê³¼ì •ì—ì„œ
+SimpleMergeFrameì— ìˆë˜ public static int saveOptionë³€ìˆ˜ë¥¼
+SimpleMergeControllerë¡œ ì˜®ê¹€. SaveEventHandlerì˜
 SimpleMergeFrame.saveOption
-=>SimpleMergeController.saveOption º¯°æ
+=>SimpleMergeController.saveOption ë³€ê²½
 
 
 
 
-2018-05-31 Ãß°¡ ¼öÁ¤»çÇ×
+2018-05-31 ì¶”ê°€ ìˆ˜ì •ì‚¬í•­
 
-1.LoadEventHandler¿¡ 
+1.LoadEventHandlerì— 
 	private int loadOption;
 	public static String leftFileName = null;
 	public static String rightFileName = null;
-	Ãß°¡
+	ì¶”ê°€
 	
-	»ı¼ºÀÚ¿¡ ÆÄ¶ó¹ÌÅÍ ÇÑ°³ Ãß°¡½ÃÅ´
+	ìƒì„±ìì— íŒŒë¼ë¯¸í„° í•œê°œ ì¶”ê°€ì‹œí‚´
 	
-	actionperformed ÇÔ¼ö¾È¿¡
+	actionperformed í•¨ìˆ˜ì•ˆì—
 	if(loadOption == 1)
 				leftFileName = filename;
 			else
 				rightFileName = filename;
-	Ãß°¡
+	ì¶”ê°€
 	
-2. controller¿¡ loadeventhandler ÆÄ¶ó¹ÌÅÍ Ãß°¡ÇÑ°³½ÃÄ×À¸¹Ç·Î ±×¿¡ µû¸¥  ÆÄ¶ó¹ÌÅÍ ÇÑ°³ ´õ ³Ö¾îÁÜ
+2. controllerì— loadeventhandler íŒŒë¼ë¯¸í„° ì¶”ê°€í•œê°œì‹œì¼°ìœ¼ë¯€ë¡œ ê·¸ì— ë”°ë¥¸  íŒŒë¼ë¯¸í„° í•œê°œ ë” ë„£ì–´ì¤Œ
 
-3. save Àßµ¹¾Æ°¡°Ô ¹Ù²Ş
+3. save ì˜ëŒì•„ê°€ê²Œ ë°”ê¿ˆ
 	
