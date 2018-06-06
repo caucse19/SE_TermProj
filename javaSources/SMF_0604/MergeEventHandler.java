@@ -27,6 +27,10 @@ public class MergeEventHandler implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		
+		if(SimpleMergeController.compOption == 0)
+			return;
+		
 		String[] lText = null;
 		String[] rText = null;
 		lText = lTextArea.getText().split("\n"); // Make Array of Strings in lTextArea
@@ -72,7 +76,6 @@ public class MergeEventHandler implements ActionListener {
 				break;
 			}
 		}
-
 
 		if(begin == -1) {
 			JOptionPane.showMessageDialog(new Frame(), "Wrong Cursor Position");
@@ -132,6 +135,8 @@ public class MergeEventHandler implements ActionListener {
 			for(int i = highlightedLine[begin] - 1; i < highlightedLine[end]; i++) {
 				if(i >= rText.length - 1 ) {
 					rTextArea.replaceRange(lText[lLength - 1] + "\n", cnt, cnt + rText[rLength-1].length());
+					if(SimpleMergeController.lbl.contains(i))	//add fake blank
+						SimpleMergeController.rbl.add(i);		//add fake blank
 				}
 				else {
 					rTextArea.replaceRange(lText[i] + "\n", cnt, cnt + rText[i].length()+1);
@@ -156,6 +161,8 @@ public class MergeEventHandler implements ActionListener {
 			for(int i = highlightedLine[begin] - 1; i < highlightedLine[end]; i++) {
 				if(i >= lText.length - 1 ) {
 					lTextArea.replaceRange(rText[rLength - 1] + "\n", cnt, cnt + lText[lLength-1].length());
+					if(SimpleMergeController.rbl.contains(i)) 	// add fake blank
+						SimpleMergeController.lbl.add(i);		// add fake blank
 				}
 				else {
 					lTextArea.replaceRange(rText[i] + "\n", cnt, cnt + lText[i].length()+1 );
@@ -195,33 +202,6 @@ public class MergeEventHandler implements ActionListener {
 					break;
 				}
 		   }
-	   }
-
-	    if(lText.length > rText.length) {
-	    	for(int i = rText.length ; i < lText.length  ; i++) {
-	    		int lstart;
-	    		int lend;
-				try {
-					lstart = lTextArea.getLineStartOffset(i);
-					lend = lTextArea.getLineEndOffset(i);
-					lyhighlighter.addHighlight(lstart, lend, wrnpainter);
-				} catch (BadLocationException e) {
-					break;
-				}	
-				
-	    	}
-	    }
-	    else if(rText.length > lText.length) {
-	    	for(int i = lText.length; i < rText.length; i++) {
-	    		try {
-					int rstart = rTextArea.getLineStartOffset(i);
-					int rend = rTextArea.getLineEndOffset(i);
-					ryhighlighter.addHighlight(rstart, rend, wrnpainter);
-				} catch (BadLocationException e) {
-					break;
-				}
-	    	}
-	    
 	    }
 	    /* Highlight Ended */
 	    
