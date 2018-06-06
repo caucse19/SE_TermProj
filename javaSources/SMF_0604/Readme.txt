@@ -1,7 +1,8 @@
 2018-06-06 추가 수정사항
 
 1. compOption 변수추가
-2. MergeEventHandler 불필요한 코드 삭제
+2. MergeEventHandler 불필요한 코드 삭제 및 compareOption 조건 추가
+3. SaveEventHandler compareOption 조건 추가
 
 2018-06-04 추가 수정사항
 
