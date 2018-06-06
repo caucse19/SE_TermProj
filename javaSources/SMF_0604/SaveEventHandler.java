@@ -76,7 +76,7 @@ public class SaveEventHandler implements ActionListener {
 				/* When a file with the same name exists */
 				file = new File(fileName);
 				if (file.exists()) {
-					int r = JOptionPane.showConfirmDialog(new Frame(), file.getName() + "is already exist. overwrite?", "Save",
+					int r = JOptionPane.showConfirmDialog(new Frame(), file.getName() + " is already exist. overwrite?", "Save",
 							JOptionPane.YES_NO_OPTION);
 					if (r == JOptionPane.NO_OPTION) {
 						JOptionPane.showMessageDialog(new Frame(), "Cancel");
