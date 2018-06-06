@@ -1,3 +1,8 @@
+2018-06-06 추가 수정사항
+
+1. compOption 변수추가
+2. MergeEventHandler 불필요한 코드 삭제
+
 2018-06-04 추가 수정사항
 
 1. CompEventHandler 공백 오류 수정
