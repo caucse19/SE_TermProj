@@ -1,0 +1,1 @@
+SimpleMerge 프로그램 각 기능의 실행과정, 결과 보고서 'document/imgs/Run Screenshot' 에는 실행중간에 찍은 스크린샷들을 올려주세요
