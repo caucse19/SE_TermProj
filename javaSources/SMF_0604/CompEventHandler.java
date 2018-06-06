@@ -24,7 +24,7 @@ public class CompEventHandler implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) { 
-		
+		SimpleMergeController.compOption = 1;
 		SimpleMergeController.leftLineNum = -1;
 		SimpleMergeController.rightLineNum = -1;
 		
@@ -194,21 +194,31 @@ public class CompEventHandler implements ActionListener {
 	         }
 
 	      }
-	      
-	      lText = lTextArea.getText().split("\n"); 
-	      rText = rTextArea.getText().split("\n"); 
+	      /* New Line Inserting Ended */
+	      lText = lTextArea.getText().split("\n"); // Make Array of Strings in lTextArea
+	      rText = rTextArea.getText().split("\n"); // Make Array of Strings in rTextArea
 	      if(lText.length> rText.length) {
 	    	  int temp = 0;
 	    	  for(int i = 0; i < lText.length - rText.length; i++) {
 	    		  rTextArea.append("\n\0");
+	    		  if(SimpleMergeController.rbl.contains(rText.length))
+	    			  SimpleMergeController.rbl.add(rText.length + temp++);
+	    		  else
+	    			  SimpleMergeController.rbl.add(rText.length);
+		
 	    	  }
 	      }
 	      else if (lText.length < rText.length) {
 	    	  int temp = 0;
 	    	  for(int i = 0; i < rText.length - lText.length; i++) {
 	    		  lTextArea.append("\n\0");
+	    		  if(SimpleMergeController.lbl.contains(lText.length))
+	    			  SimpleMergeController.lbl.add(lText.length + temp++);
+	    		  else
+	    			  SimpleMergeController.lbl.add(lText.length);
+				
 	    	  }
 	      }
-	      /* New Line Inserting Ended */
+	    		  
 	}
 }
