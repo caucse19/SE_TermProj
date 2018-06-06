@@ -25,6 +25,7 @@ public class SimpleMergeController {
 	private JTextArea leftTextArea;
 	private JTextArea rightTextArea;
 	public static int saveOption = 0;
+	public static int compOption = 0;
 	public static int leftLineNum = -1;
 	public static int rightLineNum = -1;
 	public static String leftFileName = null;
