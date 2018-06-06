@@ -1,4 +1,4 @@
-package SimpleMerge;
+﻿package SimpleMerge;
 
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -44,13 +44,13 @@ public class SaveEventHandler implements ActionListener {
 		File file = null;
 		String fileName = null;
 
-		/* push "left save" without "load" */
+		/* push "left save" */
 		if (SimpleMergeController.saveOption == 0 && SimpleMergeController.leftFileName != null) {
 			file = new File(SimpleMergeController.leftFileName);
 			fileName = file.toString();
 		}
 
-		/* push "right save" without "load" */
+		/* push "right save" */
 		else if (SimpleMergeController.saveOption == 2 && SimpleMergeController.rightFileName != null) {
 			file = new File(SimpleMergeController.rightFileName);
 			fileName = file.toString();
@@ -76,10 +76,10 @@ public class SaveEventHandler implements ActionListener {
 				/* When a file with the same name exists */
 				file = new File(fileName);
 				if (file.exists()) {
-					int r = JOptionPane.showConfirmDialog(new Frame(), file.getName() + "이(가) 이미 있습니다. 바꾸시겠습니까?", "저장",
+					int r = JOptionPane.showConfirmDialog(new Frame(), file.getName() + "is already exist. overwrite?", "Save",
 							JOptionPane.YES_NO_OPTION);
 					if (r == JOptionPane.NO_OPTION) {
-						JOptionPane.showMessageDialog(new Frame(), "취소");
+						JOptionPane.showMessageDialog(new Frame(), "Cancel");
 						return;
 					}
 				}
@@ -118,7 +118,7 @@ public class SaveEventHandler implements ActionListener {
 			}
 			bw.flush();
 			bw.close();
-			JOptionPane.showMessageDialog(new Frame(), "저장 완료");
+			JOptionPane.showMessageDialog(new Frame(), "Save Complete");
 
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
