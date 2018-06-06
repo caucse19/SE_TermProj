@@ -27,6 +27,7 @@ public class SaveEventHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		SimpleMergeController.leftLineNum = -1;
 		SimpleMergeController.rightLineNum = -1;
 
@@ -75,10 +76,10 @@ public class SaveEventHandler implements ActionListener {
 				/* When a file with the same name exists */
 				file = new File(fileName);
 				if (file.exists()) {
-					int r = JOptionPane.showConfirmDialog(new Frame(), file.getName() + "¿Ã(∞°) ¿ÃπÃ ¿÷Ω¿¥œ¥Ÿ. πŸ≤ŸΩ√∞⁄Ω¿¥œ±Ó?", "¿˙¿Â",
+					int r = JOptionPane.showConfirmDialog(new Frame(), file.getName() + "Ïù¥(Í∞Ä) Ïù¥ÎØ∏ ÏûàÏäµÎãàÎã§. Î∞îÍæ∏ÏãúÍ≤†ÏäµÎãàÍπå?", "Ï†ÄÏû•",
 							JOptionPane.YES_NO_OPTION);
 					if (r == JOptionPane.NO_OPTION) {
-						JOptionPane.showMessageDialog(new Frame(), "√Îº“");
+						JOptionPane.showMessageDialog(new Frame(), "Ï∑®ÏÜå");
 						return;
 					}
 				}
@@ -97,18 +98,27 @@ public class SaveEventHandler implements ActionListener {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(fileName));
 			BufferedReader br = new BufferedReader(content);
 			int check = -1;
-			while ((line = br.readLine()) != null) {
-				check++;
-				if((SimpleMergeController.saveOption == 0 || SimpleMergeController.saveOption == 1) && SimpleMergeController.lbl.contains(check))
-					continue;
-				else if((SimpleMergeController.saveOption == 2 || SimpleMergeController.saveOption == 3) &&SimpleMergeController.rbl.contains(check))
-					continue;
-				bw.write(line);
-				bw.newLine();
+			if(SimpleMergeController.compOption!=0) {
+				while ((line = br.readLine()) != null) {
+					check++;
+					if((SimpleMergeController.saveOption == 0 || SimpleMergeController.saveOption == 1) && SimpleMergeController.lbl.contains(check))
+						continue;
+					else if((SimpleMergeController.saveOption == 2 || SimpleMergeController.saveOption == 3) &&SimpleMergeController.rbl.contains(check))
+						continue;
+					bw.write(line);
+					bw.newLine();
+				}
+			}
+			else {
+				while ((line = br.readLine()) != null) {
+					check++;
+					bw.write(line);
+					bw.newLine();
+				}
 			}
 			bw.flush();
 			bw.close();
-			JOptionPane.showMessageDialog(new Frame(), "¿˙¿Â øœ∑·");
+			JOptionPane.showMessageDialog(new Frame(), "Ï†ÄÏû• ÏôÑÎ£å");
 
 		} catch (Exception e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
